@@ -1,0 +1,71 @@
+[{
+    "id": 1,
+    "name": "Burger",
+    "category": "main",
+    "price": 300,
+    "descripation": "classic Burger with vegies and chese",
+    "image":"assets/images/Burger.jpg"
+},
+{
+    "id": 2,
+    "name": "pizza",
+    "category": "main",
+    "price": 350,
+    "descripation": "classic pizza with vegies and ",
+    "image":"assets/images/Pizza.jpg"
+
+},
+{
+    "id": 3,
+    "name": "Garlicbraed",
+    "category": "starter",
+    "price": 200,
+    "descripation": "classic Garlicbraed with vegies ",
+    "image":"assets/images/Garlicbraed.jpg"
+},
+{
+    "id": 4,
+    "name": "Tiramisu",
+    "category": "dessert",
+    "price": 500,
+    "descripation": "classic and soft sweet",
+    "image":"assets/images/Tiramisu.jpg"
+},
+{
+    "id": 5,
+    "name": "browncake",
+    "category": "dessert",
+    "price": 300,
+    "descripation": "classic cake",
+    "image":"assets/images/browncake.jpg"
+},
+{
+    "id": 6,
+    "name": "gulabjam",
+    "category": "dessert",
+    "price": 700,
+    "descripation": "classic and soft sweet",
+    "image":"assets/images/gulabjam.jpg"
+
+},
+{
+    
+    "id": 7,
+    "name": "manchuri",
+    "category": "starter",
+    "price": 250,
+    "descripation": "classic manchuri with vegies ",
+    "image":"assets/images/manchuri.jpg"
+
+
+},
+{
+    
+"id": 8,
+    "name": "paneerchili",
+    "category": "starter",
+    "price": 450,
+    "descripation": "classic paneer with vegies ",
+    "image":"assets/images/paneerchili.jpg"
+
+}]
