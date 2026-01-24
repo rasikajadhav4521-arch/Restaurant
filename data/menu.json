@@ -1,71 +1,125 @@
 [{
     "id": 1,
-    "name": "Burger",
-    "category": "main",
+    "name": "Kulcha",
+    "category": "starter",
     "price": 300,
-    "descripation": "classic Burger with vegies and chese",
-    "image":"assets/images/Burger.jpg"
+    "description": "Traditonal kashmiri flatbreads",
+    "image":"assets/images/Kulcha.jpg"
 },
 {
     "id": 2,
-    "name": "pizza",
-    "category": "main",
+    "name": "sheernal",
+    "category": "starter",
     "price": 350,
-    "descripation": "classic pizza with vegies and ",
-    "image":"assets/images/Pizza.jpg"
+    "description": "Saffron flavord sweet flatbreads ",
+    "image":"assets/images/sheermal.jpg"
 
 },
 {
     "id": 3,
-    "name": "Garlicbraed",
-    "category": "starter",
+    "name": "chaman",
+    "category": "main",
     "price": 200,
-    "descripation": "classic Garlicbraed with vegies ",
-    "image":"assets/images/Garlicbraed.jpg"
+    "description": "Paneer in rich kashmir ",
+    "image":"assets/images/chaman.jpg"
 },
 {
     "id": 4,
-    "name": "Tiramisu",
+    "name": "Phirni",
     "category": "dessert",
     "price": 500,
-    "descripation": "classic and soft sweet",
-    "image":"assets/images/Tiramisu.jpg"
+    "description": "creamy rice pudding with cardmon",
+    "image":"assets/images/Phirni.jpg"
 },
 {
     "id": 5,
-    "name": "browncake",
+    "name": "Shufta",
     "category": "dessert",
     "price": 300,
-    "descripation": "classic cake",
-    "image":"assets/images/browncake.jpg"
+    "description": "sweet dry fruit dessert",
+    "image":"assets/images/Shufta.jpg"
 },
 {
     "id": 6,
-    "name": "gulabjam",
+    "name": "Qubani-meetha",
     "category": "dessert",
     "price": 700,
-    "descripation": "classic and soft sweet",
-    "image":"assets/images/gulabjam.jpg"
+    "description": "Apricot dessert serverd with cream",
+    "image":"assets/images/Qubani-meetha.jpg"
 
 },
 {
     
     "id": 7,
-    "name": "manchuri",
-    "category": "starter",
+    "name": "gushtaba",
+    "category": "main",
     "price": 250,
-    "descripation": "classic manchuri with vegies ",
-    "image":"assets/images/manchuri.jpg"
+    "description": "Tender minced meatballs in gravy ",
+    "image":"assets/images/gushtaba.jpg"
 
 
 },
 {
     
 "id": 8,
-    "name": "paneerchili",
-    "category": "starter",
-    "price": 450,
-    "descripation": "classic paneer with vegies ",
-    "image":"assets/images/paneerchili.jpg"
+    "name": "Kahwa",
+    "category": "drink",
+    "price": 200,
+    "description": "Traditonal kashmiri tea",
+    "image":"assets/images/kahwa.jpg"
 
+},
+{
+    "id": 9,
+    "name": "Yakin",
+    "category": "main",
+    "price": 750,
+    "description": "Mutton cooked in yougart and sauce ",
+    "image":"assets/images/Yakin.jpg"
+},
+{
+     "id": 10,
+    "name": "kashmiri dal",
+    "category": "main",
+    "price": 150,
+    "description": "Lentils with kashmiri flavors and mild spices ",
+    "image":"assets/images/kashmiri-dal.jpg"
+
+
+
+},
+{
+     "id": 11,
+    "name": "kashmiri pulao",
+    "category": "main",
+    "price": 250,
+    "description": "Aromatic rice with dry fruits",
+    "image":"assets/images/kashmiri pulao.jpg"
+},
+{
+     "id": 12,
+    "name": "tabakmaaz",
+    "category": "main",
+    "price": 650,
+    "description": "Mutton cooked in yougart and sauce ",
+    "image":"assets/images/tabakmaaz.jpg"
+
+},
+{
+        
+"id": 13,
+    "name": "Noon-chai",
+    "category": "drink",
+    "price": 100,
+    "description": "salty tea made with green leaves and milk  ",
+    "image":"assets/images/Noon-chai.jpg"
+},
+{
+        
+"id":  14,
+    "name": "sheer-chai",
+    "category": "drink",
+    "price": 200,
+    "description": "pink tea with milk flavour  ",
+    "image":"assets/images/sheer-chai.jpg"
 }]

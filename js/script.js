@@ -144,7 +144,7 @@ filterButtons.forEach(btn => {
    5. SEARCH INPUT HANDLER
    ========================================================= */
 // Apply filters on every keystroke
-searchInput.addEventListener("input", applyFilters);
+searchInput.addEventListener("input",applyFilters);
 
 /* =========================================================
    MENU CARD ANIMATION
@@ -186,6 +186,61 @@ document.querySelectorAll(".nav-link").forEach(anchor => {
     });
 });
 
+/*==============================================
+   BOOK TABLE MODAL HANDLERS
+   ========================================================= */
+// Open book table modal
+bookTableBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  bookTableModal.style.display = "flex";
+});
+
+// Close book table modal
+closeBookTable.addEventListener("click", () => {
+  bookTableModal.style.display = "none";
+});
+
+// Close modal when clicking outside content
+window.addEventListener("click", (e) => {
+  if (e.target === bookTableModal) {
+    bookTableModal.style.display = "none";
+  }
+});
+
+/* =========================================================
+   ORDER MODAL HANDLERS
+   ========================================================= */
+// Close order modal
+closeOrder.addEventListener("click", () => {
+  orderModal.style.display = "none";
+});
+
+// Increase quantity
+incBtn.addEventListener("click", () => {
+  qtyInput.value = +qtyInput.value + 1;
+});
+
+// Decrease quantity (minimum 1)
+decBtn.addEventListener("click", () => {
+  if (qtyInput.value > 1) {
+    qtyInput.value = +qtyInput.value - 1;
+  }
+});
+
+// Open order modal when "Add to Order" button is clicked
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".add-to-order");
+  if (!btn) return;
+    // Set selected item details
+  orderItemName.textContent = btn.dataset.name;
+  orderItemPrice.textContent = `₹$ {btn.dataset.price}`;
+  qtyInput.value = 1;
+
+  // Show order modal
+  orderModal.style.display = "flex";
+});
+
+  
 /* =========================================================
    DOM CONTENT LOADED
    ========================================================= */

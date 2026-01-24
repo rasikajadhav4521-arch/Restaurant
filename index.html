@@ -21,7 +21,7 @@
             <div class="container nav-container">
 
         <!-- Logo -->
-        <a href="#" class="logo">DB<span>.</span></a>
+        <a href="#" class="logo">RNH<span>.</span></a>
 
           <!-- Navigation links -->
             <ul class="nav-list">
@@ -53,9 +53,9 @@
         </div>
         <div class="hero-content container">
                 <span class="hero-badge">Est. 2026</span>
-                <h1 class="hero-title">Authentic Flavors, <br>Fresh Ingredients</h1>
+                <h1 class="hero-title">Flovors of the kashmir, <br>Served With Love.</h1>
                 <p class="hero-subtitle">
-                    Experience culinary excellence crafted with passion in the heart of Mumbai.
+                    Experience culinary excellence crafted with passion in the heart of kashmir.
                 </p>
                 <!-- Hero button -->
                  <div class="hero-button">
@@ -64,6 +64,7 @@
                     </div>
                     </div>
                     </section>
+
                     <!--ABOUT SECTION-->
                     <section id="about" class="section about">
                         <div class ="container">
@@ -71,7 +72,7 @@
 
                     <!-- About image -->
                     <div class="about-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80"
+                        <img src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                              alt="Exquisite Dish"
                              class="main-img">
                 <!--Experiance badge-->
@@ -84,12 +85,13 @@
                       <!-- About text -->
                     <div class="about-text">
                         <span class="sub-heading">Fine Dining Experience</span>
-                        <h2 class="section-title">Our Culinary Journey</h2>
+                        <h2 class="section-title">AUTHENTIC KASHMIRI FLAVORS</h2>
                         <p>
-                            Delicious Bites is dedicated to serving fresh, hygienic, and flavorful dishes made from quality ingredients.
+                            A Taste of Kashmir At Kashmir Delights, we bring you the true taste of Kashmir through time-honored recipes, aromatic spices,
+                             and dishes prepared with love and care.
                         </p>
                         <p>
-                            Located in the heart of Mumbai, we pride ourselves on exceptional service and a warm atmosphere.
+                         Surrounded by the beauty of the valley, we offer a cozy atmosphere where every meal becomes a cultural experience.
                         </p>
                         <a href="#menu" class="btn-text">
                             Discover our specialties <i class="fas fa-arrow-right"></i>
@@ -128,6 +130,8 @@
                     <button class="filter-btn" data-category="starter">Starters</button>
                     <button class="filter-btn" data-category="main">Main Course</button>
                     <button class="filter-btn" data-category="dessert">Desserts</button>
+                    <button class="filter-btn" data-category="drink">Drink</button>
+                    
                 </div>
 
                 <!-- Menu items container (JS renders here) -->
@@ -135,14 +139,38 @@
 
             </div>
         </section>
+        <!-- ================= ORDER MODAL ================= -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content order-modal">
+
+            <!-- Close modal -->
+            <button class="modal-close" id="closeOrder">&times;</button>
+
+            <!-- Selected item details -->
+            <h2 class="order-title" id="orderItemName"></h2>
+            <p class="order-price" id="orderItemPrice"></p>
+
+            <!-- Quantity controls -->
+            <div class="quantity-control">
+                <button class="qty-btn" id="decreaseQty">−</button>
+                <input type="number" id="orderQty" value="1" min="1" />
+                <button class="qty-btn" id="increaseQty">+</button>
+            </div>
+                <!-- Add to cart -->
+            <button class="btn primary full-width">Add to Cart</button>
+        </div>
+    </div>
+
+
+
         <!-- ================= FOOTER ================= -->
     <footer class="footer">
         <div class="container footer-grid">
 
             <!-- Brand info -->
             <div class="footer-brand">
-                <h2 class="logo">DB<span>.</span></h2>
-                <p>Crafting moments through flavor since 2026.</p>
+                <h2 class="logo">RNH<span>.</span></h2>
+                <p>Comfort & Taste Under one Roof since 2026.</p>
 
                 <!-- Social icons -->
                 <div class="social-icons">
@@ -164,8 +192,8 @@
             <!-- Contact info -->
             <div class="footer-contact" id="contact">
                 <h4>Visit Us</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Nariman Point, Mumbai, India</p>
-                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-map-marker-alt"></i> Gupkar Rd,Srinagar,Jammu and kashmir 190001, India</p>
+                <p><i class="fas fa-phone"></i> +91 9309491301</p>
                 <p><i class="fas fa-envelope"></i> hello@deliciousbites.com</p>
             </div>
 
@@ -174,10 +202,42 @@
         <!-- Footer bottom -->
         <div class="footer-bottom">
             <div class="container">
-                <p>&copy; 2026 Delicious Bites. Designed with Excellence.</p>
+                <p>&copy; 2026 Royal Nest Hotel. Designed with Excellence.</p>
             </div>
         </div>
     </footer>
+    <!-- ================= BOOK TABLE MODAL ================= -->
+        <section>
+            <div class="modal" id="bookTableModal">
+                <div class="modal-content">
+      <!-- Close modal-->
+          <button class="modal-close" id="closeBookTable">&times;
+          </button>
+          <h2>Book a Table</h2>
+          <!--Booking form-->
+          <form class="booking-form">
+            <input type="text placeholder=Full Name"required/>
+            <input type="tel" placeholder="phone Number"required/>
+            <input type="date" required />
+            <input type="time" required />
+             <select required>
+                            <option value="">Guests</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>4</option>
+                            <option>6+</option>
+                        </select>
+                         <button type="submit" class="btn primary">Confirm Booking</button>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+                        
+
+       
+
+
     <script type="module" src="js/script.js"></script>
 </body>
 </html>
