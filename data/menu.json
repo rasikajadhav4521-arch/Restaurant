@@ -59,16 +59,7 @@
 
 
 },
-{
-    
-"id": 8,
-    "name": "Kahwa",
-    "category": "drink",
-    "price": 200,
-    "description": "Traditonal kashmiri tea",
-    "image":"assets/images/kahwa.jpg"
 
-},
 {
     "id": 9,
     "name": "Yakin",
