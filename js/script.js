@@ -393,46 +393,6 @@ const navObserver = new IntersectionObserver(entries => {
 
 sections.forEach(section => navObserver.observe(section));
 
-// const navObserver = new IntersectionObserver(
-//   entries => {
-//     entries.forEach(entry => {
-//       if (entry.isIntersecting) {
-//         navLinks.forEach(link => {
-//           link.classList.remove("active");
-
-//           if (link.getAttribute("href") === #${entry.target.id}) {
-//             link.classList.add("active");
-//           }
-//         });
-//       }
-//     });
-//   },
-//   {
-//     rootMargin: "-90px 0px -60% 0px",
-//     threshold: 0
-//   }
-// );
-
-// const navObserver = new IntersectionObserver(
-//   entries => {
-//     entries.forEach(entry => {
-//       if (entry.isIntersecting) {
-//         navLinks.forEach(link => {
-//           link.classList.remove("active");
-
-//           if (link.getAttribute("href") === #${entry.target.id}) {
-//             link.classList.add("active");
-//           }
-//         });
-//       }
-//     });
-//   },
-//   {
-//     threshold: 0.6
-//   }
-// );
-
-// sections.forEach(section => navObserver.observe(section));
 
 
 

@@ -752,6 +752,7 @@ select:focus {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  background-color: var(--big-light);
 }
 
 /* Booking form inputs */
@@ -788,7 +789,7 @@ select:focus {
   color: var(--primary);
   font-weight: 600;
   margin-bottom: 1.5rem;
-  font-size: 1.2rem;
+  
 }
 
 /* =========================================================
@@ -865,72 +866,57 @@ select:focus {
 }
 
 
-/*==================================================
- DESIGNER INTRO MODAL
- ======================================== */
-.designer-modal{
-text-align: center;
-padding: 2.5rem 2rem;
-border-radius: 14px;
-max-width: 380px;
-animation:scaleIn 0.3s ease;
+/* ================================================
+   DESIGNER INTRO MODAL
+   ================================================ */
 
-}
+   .designer-modal {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-radius: 14px;
+    max-width: 380px;
+    animation: scaleIn 0.3 ease;
 
-/* Desinger photo */
- .designer-img{
-    width:120px;
-    height:120px;
-    border-radius: 50px;
-    object-fit:cover;
+
+   }
+
+/* Designer photo */
+.designer-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
     display: block;
-    margin: 0 auto 1.2 rem;
+    margin: 0 auto 1.2rem;
     background: #f2f2f2;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
- }
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+   }
 
- .designer-img{
-    animation:fadeZoom 0.4s ease; 
+   .designer-img {
+    animation: fadeZoom 0.4s ease;
 
- }
- @keyframes fadeZoom{
-    from{
+   }
+
+   @keyframes fadeZoom {
+    from {
         opacity: 0;
         transform: scale(0.85);
     }
-    to{
+    to {
         opacity: 1;
-        
+        transform: scale(1);
     }
- }
- /* Designer title */
- .designer-title{
-    font-family:"playfair Display",serif;
-    font-size: 0.5rem;
- }
+   }
 
-    /* Designer text */
-    .designer-text{
-        font-size:0.95rem;
-        color: var(--text-light);
-        line-height:1.6;
-    }
+   /* Designer title */
+   .designer-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.6rem;
+   }
 
-    /* ===== BOOK TABLE MODAL ===== */
-
-.book-table-modal{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0,0,0,0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-.book-table-modal.active{
-    display: flex;
-}
+   /* Disigner text */
+   .designertext {
+    font-size:  0.95rem;
+    color: var(--text-light);
+    line-height: 1.6;
+   }
