@@ -8,7 +8,7 @@
     <!--Font Awesome Icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google font link-->
-    <link rel="styleshet" href="https://fonts.googleapis.com/css2?family=Poppins">
+    <link rel ="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins">
 
     <!-- css added -->
      <link rel="stylesheet" href="css/style.css">
@@ -26,16 +26,17 @@
           <!-- Navigation links -->
             <ul class="nav-list">
                 <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">Our Story</a></li>
-                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#about" class="nav-link ">Our Story</a></li>
+                <li><a href="#menu" class="nav-link ">Menu</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
 
             <!-- Desktop actions -->
             <div class="nav-actions">
 
-                <!-- Book table button -->
+                 <!-- Book table button -->
                 <a href="#contact" class="btn btn-sm primary">Book a Table</a>
+
 
                 <!-- Mobile navigation toggle -->
                 <button class="mobile-nav-toggle" aria-label="Toggle navigation">
@@ -152,7 +153,7 @@
 
             <!-- Quantity controls -->
             <div class="quantity-control">
-                <button class="qty-btn" id="decreaseQty">−</button>
+                <button class="qty-btn" id="decreaseQty">-</button>
                 <input type="number" id="orderQty" value="1" min="1" />
                 <button class="qty-btn" id="increaseQty">+</button>
             </div>
@@ -210,13 +211,14 @@
         <section>
             <div class="modal" id="bookTableModal">
                 <div class="modal-content">
+
       <!-- Close modal-->
           <button class="modal-close" id="closeBookTable">&times;
           </button>
           <h2>Book a Table</h2>
           <!--Booking form-->
           <form class="booking-form">
-            <input type="text placeholder=Full Name"required/>
+            <input type="text" placeholder="Full Name" required/>
             <input type="tel" placeholder="phone Number"required/>
             <input type="date" required />
             <input type="time" required />
@@ -231,11 +233,29 @@
                     </form>
 
                 </div>
-            </div>
+            
         </section>
-                        
+        <!-- =======================DESIGNER INTRO MODAL============================ -->
+         <div class="modal" id="designerModal">
+            <div class="modal-content designer-modal">
 
-       
+                <!--Close button  -->
+                <button class="modal-close" id="closeDesignerModal">&times;</button>
+
+                <!-- Designer image -->
+                <img
+                    src="assets/images/myimg.jpeg"
+                    alt="Website designer"
+                    class="designer-img"
+                    />
+
+                <!-- Designer message -->
+                <h2 class="designer-title">Hello</h2>
+                    <p class="designer-text">
+                        I,<strong>Rasika Jadhav</strong>,proudly designed and 
+                        devloped this Website
+                        with passion, creativity, and clean >
+                        </p>
 
 
     <script type="module" src="js/script.js"></script>

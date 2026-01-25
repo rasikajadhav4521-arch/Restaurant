@@ -5,9 +5,9 @@
    ========================================================= */
 :root {
     /* Primary brand colors */
-    --primary: #e24f1c;
-    --primary-light: #f07a4a;
-    --secondary: #d99b49;
+    --primary: #19dc30;
+    --primary-light: #4af087;
+    --secondary: #4ed949;
 
     /*Text colors */
     --text-main:#333333;
@@ -22,7 +22,7 @@
     --dark:#1f1f1f;
 
     /* Shadow for depth*/
-    --shadow-sm:04px 12px rgba(0,0,0,0,0.6);
+    --shadow-sm:0 4px 12px rgba(0,0,0,0.6);
     --shadow-md:0 12px 30px rgba(0,0,0,0.12);
 
     /* Accent helpers*/
@@ -66,7 +66,8 @@ a {
 
    /*Fixed navigation bar with glass  effect */
    .navbar{
-    background: rgba(255,255,255,0.92);
+    background:
+     rgba(255,255,255,0.92);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(15px);
     padding: 1.2rem ;
@@ -101,17 +102,26 @@ a {
     }
 
     /*Highliht part of logo*/
-    .loga span{
+    .logo span{
         color: var(--primary);
     }
 
-    /*Navigation list layout*/
+    /* Navigation list layout */
+    .nav-list{
+        display: flex;
+        list-style: none;
+        gap: 2.5rem;
+        align-items: center;
+    }
+
+    /*Indiviual nav link*/
     .nav-link{
         font-weight: 500;
         font-size: 0.95rem;
         color: var(--text-main);
         transition: var(--transition);
         position: relative;
+        text-decoration: none;
     }
 
     /*Underline animation on hover*/
@@ -127,15 +137,36 @@ a {
     }
 
     /*Expand underline on hover*/
-    .nav-link::after{
+    .nav-link:hover::after {
         width:100%;
+    }
+
+    /* Underline shoe only on hover*/
+    .nav-link:hover::after {
+        width: 100%;
+    }
+    /* Show underline on touch / click(mobile)*/
+    .nav-link :active::after,
+    .nav-link :focus::after {
+        width: 100%;
     }
 
     /*Change text color on hover*/
     .nav-link:hover{
-
+        text-decoration: none;
         color: var(--primary);
     }
+    /* active link style */
+    
+     .nav-link.active {
+     color: var(--primary);
+     }
+
+    .nav-link.active::after {
+      width: 100%;
+   }
+
+    
     
     /*Right-side nav actions(button+cart)*/
     .nav-actions {
@@ -143,6 +174,7 @@ a {
     align-items: center;
     gap: 1.2rem;
     }
+    
 
     /* Small button inside navbar */
     .nav-actions .btn {
@@ -194,6 +226,8 @@ h3 {
 .text-left {
     text-align: left;
 }
+
+
 
 /* =========================================================
    HERO SECTION
@@ -260,7 +294,24 @@ h3 {
     margin: 0 auto 2.5rem;
     opacity: 0.85;                  /* slightly muted text */
 }
+/* Hero animation */
+.hero-content > * {
+    opacity: 0;
+    transform: translate(30px);
+    animation: heroFadeUp 0.8s ease forwards;
+}
+.hero-badge{ animation-delay: 0.2s;}
+.hero-title{ animation-delay:0.4s;}
+.hero-subtitle{ animation-delay: 0.6s;}
+.hero-button{ animation-delay: 0.8s;}
 
+@keyframes heroFadeUp{
+    to{
+        opacity: 1;
+        transform: translateY(0);
+
+    }
+}
 /* =========================================================
    BUTTONS
    ========================================================= */
@@ -285,7 +336,7 @@ h3 {
 
 /* Hover effect for primary button */
 .btn.primary:hover {
-    background: rgba(229, 66, 12, 0.9);
+    background: rgba(245, 246, 244, 0.847);
     transform: translateY(-3px);    /* subtle lift effect */
     box-shadow: 0 10px 20px rgba(211, 84, 0, 0.3);
 }
@@ -375,6 +426,18 @@ h3 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
 }
+/* ================= SCROLL REVEAL ================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.7s ease;
+}
+
+.reveal.reveal-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 /* =========================================================
    MENU SECTION
@@ -404,8 +467,8 @@ h3 {
 
    /*Search input focus state*/
    .menu-search input:focus{
-    border-color: var(primary);
-    box-shadow : 0 0 0 3px rgb(217, 49, 27);
+    border-color: var(--primary);
+    box-shadow : 0 0 0 3px rgb(27, 217, 43);
    }
 
 /*=========================================================
@@ -438,7 +501,7 @@ h3 {
     color: var(--primary);
     }
 
-    /*Active filter butten/
+    /*Active filter butten*/
     .filter-btn.active{
         background: var(--primary);
         color: var(--white);
@@ -548,9 +611,18 @@ h3 {
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
     display: -webkit-box;
-    --webkit-line-clamp: 2;         /* limits text to 2 lines */
+    -webkit-line-clamp: 2;         /* limits text to 2 lines */
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+     /* Icon rotation (menu + social icons) */
+i {
+  transition: transform 0.3s ease;
+}
+
+.menu-card:hover i,
+.social-icons a:hover i {
+  transform: rotate(90deg);
 }
 
     /* =========================================================
@@ -614,29 +686,47 @@ h3 {
     box-shadow: var(--shadow-md);
 }
 
+
 /* =========================================================
    MODAL BASE
    ========================================================= */
-
-/* Full-screen modal overlay */
+/*Full-screen modal overlay */
 .modal {
   position: fixed;
   inset: 0;                       /* covers entire viewport */
   background: rgba(0, 0, 0, 0.6);
-  display: none;                  /* hidden by default */
+  /* display: none;                  hidden by default */
   align-items: center;
   justify-content: center;
   z-index: 999;
+  backdrop-filter: blur(4px);
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
 }
 
 /* Modal content box */
 .modal-content {
-  background: #fff;
+  background: #fcf9f9;
   padding: 2rem;
   width: 90%;
   max-width: 420px;
-  border-radius: 8px;
-  position: relative;
+   /* border-radius: 8px;
+  position: relative; */
+  border-radius: 12px;
+  transform: translateY(40px);
+  transition: 0.3s ease;
+}
+
+/* Show modal when active */
+.modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal.active .modal-content {
+  transform: translateY(0);
 }
 
 /* Close button for modal */
@@ -650,6 +740,13 @@ h3 {
   cursor: pointer;
 }
 
+/* Input focus glow */
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(226, 79, 28, 0.25);
+}
 /* Booking form layout */
 .booking-form {
   display: flex;
@@ -663,6 +760,8 @@ h3 {
   padding: 10px;
   border: 1px solid #ccc;
 }
+
+
 
 /* =========================================================
    ORDER MODAL
@@ -689,6 +788,7 @@ h3 {
   color: var(--primary);
   font-weight: 600;
   margin-bottom: 1.5rem;
+  font-size: 1.2rem;
 }
 
 /* =========================================================
@@ -764,3 +864,73 @@ h3 {
   margin-top: 1.5rem;
 }
 
+
+/*==================================================
+ DESIGNER INTRO MODAL
+ ======================================== */
+.designer-modal{
+text-align: center;
+padding: 2.5rem 2rem;
+border-radius: 14px;
+max-width: 380px;
+animation:scaleIn 0.3s ease;
+
+}
+
+/* Desinger photo */
+ .designer-img{
+    width:120px;
+    height:120px;
+    border-radius: 50px;
+    object-fit:cover;
+    display: block;
+    margin: 0 auto 1.2 rem;
+    background: #f2f2f2;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+ }
+
+ .designer-img{
+    animation:fadeZoom 0.4s ease; 
+
+ }
+ @keyframes fadeZoom{
+    from{
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to{
+        opacity: 1;
+        
+    }
+ }
+ /* Designer title */
+ .designer-title{
+    font-family:"playfair Display",serif;
+    font-size: 0.5rem;
+ }
+
+    /* Designer text */
+    .designer-text{
+        font-size:0.95rem;
+        color: var(--text-light);
+        line-height:1.6;
+    }
+
+    /* ===== BOOK TABLE MODAL ===== */
+
+.book-table-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.book-table-modal.active{
+    display: flex;
+}

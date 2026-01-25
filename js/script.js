@@ -15,8 +15,20 @@ let menuItems = [];
 // Tracks currently selected category
 let activeCategory = "all";
 
+let currentItemPrice = 0; // base price of selected item
+
+let isManualScroll = false;
+
 // Shopping cart data (persisted using localStorage)
 //let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// MOBILE SAFETY: Disable reveal animations on small screens
+if (window.innerWidth <= 768) {
+  document.querySelectorAll(".reveal").forEach(el => {
+    el.classList.add("reveal-active");
+  });
+}
+
 
 /* =========================================================
    DOM ELEMENT REFERENCES
@@ -52,6 +64,14 @@ const orderItemName = document.getElementById("orderItemName");
 const qtyInput = document.getElementById("orderQty");
 const incBtn = document.getElementById("increaseQty");
 const decBtn = document.getElementById("decreaseQty");
+
+// Designer intro modal
+const designerModal = document.getElementById("designerModal");
+const closeDesignerModal = document.getElementById("closeDesignerModal");
+
+// Active navbar section-wise
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-link");
 
 // Cart count badge
 //const cartCountEl = document.getElementById("cartCount");
@@ -144,7 +164,7 @@ filterButtons.forEach(btn => {
    5. SEARCH INPUT HANDLER
    ========================================================= */
 // Apply filters on every keystroke
-searchInput.addEventListener("input",applyFilters);
+searchInput.addEventListener("input", applyFilters);
 
 /* =========================================================
    MENU CARD ANIMATION
@@ -165,84 +185,271 @@ function animateCards() {
 }
 
 /* =========================================================
-   SMOOTH SCROLL FOR NAVIGATION LINKS
+   SMOOTH SCROLL FOR NAVIGATION LINKS (WITH FIXED NAV OFFSET)
    ========================================================= */
 document.querySelectorAll(".nav-link").forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
-        e.preventDefault();
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
 
-        // Get target section
-        const target = document.querySelector(this.getAttribute("href"));
-        if (!target) return;
+    const target = document.querySelector(this.getAttribute("href"));
+    if (!target) return;
 
-        // Smooth scroll with offset for fixed header
-        window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: "smooth"
-        });
+    isManualScroll = true;
 
-        // Close mobile menu after navigation
-        navList.classList.remove("active");
+    const yOffset = -90; // height of fixed navbar
+    const y =
+      target.getBoundingClientRect().top +
+      window.pageYOffset +
+      yOffset;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth"
     });
+
+    // Manually set active link
+    navLinks.forEach(link => link.classList.remove("active"));
+    this.classList.add("active");
+
+    // Close mobile menu
+    navList.classList.remove("active");
+
+    // Re-enable observer after scroll finishes
+    setTimeout(() => {
+      isManualScroll = false;
+    }, 800);
+  });
 });
 
-/*==============================================
-   BOOK TABLE MODAL HANDLERS
+
+// /* =========================================================
+//    SMOOTH SCROLL FOR NAVIGATION LINKS
+//    ========================================================= */
+// document.querySelectorAll(".nav-link").forEach(anchor => {
+//   anchor.addEventListener("click", function (e) {
+//     e.preventDefault();
+
+//     const target = document.querySelector(this.getAttribute("href"));
+//     if (!target) return;
+
+//     isManualScroll = true;
+
+//     // window.scrollTo({
+//     //   top: target.offsetTop - 80,
+//     //   behavior: "smooth"
+//     // });
+
+//     target.scrollIntoView({
+//       behavior: "smooth",
+//       block: "start"
+//     });
+
+//     // Manually set active link
+//     navLinks.forEach(link => link.classList.remove("active"));
+//     this.classList.add("active");
+
+//     navList.classList.remove("active");
+
+//     // Re-enable observer after scroll finishes
+//     setTimeout(() => {
+//       isManualScroll = false;
+//     }, 800);
+//   });
+// });
+
+/* =========================================================
+   BOOK TABLE MODAL LOGIC
    ========================================================= */
-// Open book table modal
 bookTableBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  bookTableModal.style.display = "flex";
+  //bookTableModal.style.display = "flex";
+  bookTableModal.classList.add("active");
 });
 
-// Close book table modal
 closeBookTable.addEventListener("click", () => {
-  bookTableModal.style.display = "none";
+  // bookTableModal.style.display = "none";
+  bookTableModal.classList.remove("active");
 });
 
-// Close modal when clicking outside content
 window.addEventListener("click", (e) => {
   if (e.target === bookTableModal) {
-    bookTableModal.style.display = "none";
+    // bookTableModal.style.display = "none";
+    bookTableModal.classList.remove("active");
   }
 });
 
 /* =========================================================
-   ORDER MODAL HANDLERS
+   ORDER MODAL LOGIC
+   - Opens modal when "Order" button is clicked
    ========================================================= */
-// Close order modal
-closeOrder.addEventListener("click", () => {
-  orderModal.style.display = "none";
-});
-
-// Increase quantity
-incBtn.addEventListener("click", () => {
-  qtyInput.value = +qtyInput.value + 1;
-});
-
-// Decrease quantity (minimum 1)
-decBtn.addEventListener("click", () => {
-  if (qtyInput.value > 1) {
-    qtyInput.value = +qtyInput.value - 1;
-  }
-});
-
-// Open order modal when "Add to Order" button is clicked
 document.addEventListener("click", (e) => {
   const btn = e.target.closest(".add-to-order");
   if (!btn) return;
-    // Set selected item details
+
+  currentItemPrice = Number(btn.dataset.price);
+
   orderItemName.textContent = btn.dataset.name;
-  orderItemPrice.textContent = `₹$ {btn.dataset.price}`;
+  //orderItemPrice.textContent = ₹${btn.dataset.price};
   qtyInput.value = 1;
 
-  // Show order modal
-  orderModal.style.display = "flex";
+  orderItemPrice.textContent = `₹${currentItemPrice}`;
+
+  //orderModal.style.display = "flex";
+  orderModal.classList.add("active");
+
 });
 
-  
+/* =========================================================
+   ORDER MODAL CONTROLS
+   ========================================================= */
+closeOrder.addEventListener("click", () => {
+  //orderModal.style.display = "none";
+  orderModal.classList.remove("active");
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === orderModal) {
+    orderModal.classList.remove("active");
+  }
+});
+
+/*  Helper function for order modal  */
+function updateTotalPrice() {
+  const quantity = Number(qtyInput.value);
+  const total = currentItemPrice * quantity;
+  orderItemPrice.textContent = `₹${total}`;
+}
+
+incBtn.addEventListener("click", () => {
+  qtyInput.value = +qtyInput.value + 1;
+  updateTotalPrice();
+});
+
+decBtn.addEventListener("click", () => {
+  if (qtyInput.value > 1) {
+    qtyInput.value = +qtyInput.value - 1;
+    updateTotalPrice();
+  }
+});
+
+/* =========================================================
+   DESIGNER INTRO MODAL
+   - Shown only once using localStorage
+   ========================================================= */
+closeDesignerModal.addEventListener("click", () => {
+  //designerModal.style.display = "none";
+  designerModal.classList.remove("active");
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === designerModal) {
+    //designerModal.style.display = "none";
+    designerModal.classList.remove("active");
+  }
+});
+
+/* =========================================================
+   SCROLL REVEAL ANIMATION
+   ========================================================= */
+const revealObserver = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("reveal-active");
+      }
+    });
+  },
+  { threshold: 0.2 }
+);
+
+document.querySelectorAll(".reveal").forEach(section => {
+  revealObserver.observe(section);
+});
+
+/* =========================================================
+   ACTIVE NAV LINK ON SCROLL
+   ========================================================= */
+// const sections = document.querySelectorAll("section[id]");
+// const navLinks = document.querySelectorAll(".nav-link");
+
+const navObserver = new IntersectionObserver(entries => {
+  if (isManualScroll) return;
+
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === `#${entry.target.id}`) {
+          link.classList.add("active");
+        }
+      });
+    }
+  });
+}, {
+  rootMargin: "-90px 0px -60% 0px",
+  threshold: 0
+});
+
+sections.forEach(section => navObserver.observe(section));
+
+// const navObserver = new IntersectionObserver(
+//   entries => {
+//     entries.forEach(entry => {
+//       if (entry.isIntersecting) {
+//         navLinks.forEach(link => {
+//           link.classList.remove("active");
+
+//           if (link.getAttribute("href") === #${entry.target.id}) {
+//             link.classList.add("active");
+//           }
+//         });
+//       }
+//     });
+//   },
+//   {
+//     rootMargin: "-90px 0px -60% 0px",
+//     threshold: 0
+//   }
+// );
+
+// const navObserver = new IntersectionObserver(
+//   entries => {
+//     entries.forEach(entry => {
+//       if (entry.isIntersecting) {
+//         navLinks.forEach(link => {
+//           link.classList.remove("active");
+
+//           if (link.getAttribute("href") === #${entry.target.id}) {
+//             link.classList.add("active");
+//           }
+//         });
+//       }
+//     });
+//   },
+//   {
+//     threshold: 0.6
+//   }
+// );
+
+// sections.forEach(section => navObserver.observe(section));
+
+
+
 /* =========================================================
    DOM CONTENT LOADED
    ========================================================= */
-// Initialize application once DOM is ready
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Show designer intro only once
+  const hasSeenDesignerIntro = localStorage.getItem("designerIntroSeen");
+
+  if (!hasSeenDesignerIntro) {
+    //designerModal.style.display = "flex";
+    designerModal.classList.add("active");
+    localStorage.setItem("designerIntroSeen", "true");
+  }
+
+  init(); // Initialize menu and filters
+});
+
